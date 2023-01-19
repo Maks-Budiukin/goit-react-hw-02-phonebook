@@ -2,6 +2,43 @@ import React from "react";
 import { Component } from "react";
 import { nanoid } from 'nanoid'
 import PropTypes from 'prop-types';
+import styled from "styled-components";
+
+const StyledForm = styled.form`
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+
+gap: 4px;
+width: 300px;
+
+    input {
+        display: flex;
+        width: 200px;
+        flex-direction: column;
+        border: 1px solid silver;
+        border-radius: 4px;
+
+        &:hover,
+        &:focus  {
+        outline: none;
+        border: 1px solid skyblue;
+        }
+    }
+    button {
+    margin-left: auto;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid silver;
+    border-radius: 4px;
+
+    &:hover,
+    &:focus  {
+      outline: none;
+      border: 1px solid skyblue;
+    }
+  }
+`
 
 export class ContactForm extends Component {
     state = {
@@ -10,7 +47,7 @@ export class ContactForm extends Component {
     }
 
     nameInpudId = nanoid();
-    phoneInpudId = nanoid();
+    numberInpudId = nanoid();
 
     onInputChange = (event) => {
 
@@ -29,7 +66,7 @@ export class ContactForm extends Component {
 
     render() {
         return(
-        <form onSubmit={this.handleSubmit}>
+        <StyledForm onSubmit={this.handleSubmit}>
     <label htmlFor={this.nameInpudId}>Name </label>
     <input
       type="text"
@@ -45,7 +82,7 @@ export class ContactForm extends Component {
     <input
       type="tel"
           name="number"
-          id={this.phoneInpudId}
+          id={this.numberInpudId}
       pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           value={this.state.number}
@@ -55,10 +92,9 @@ export class ContactForm extends Component {
 
         <button type="submit">Add contact</button>
         
-    </form>)
+    </StyledForm>)
     }
 }
-
 
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,

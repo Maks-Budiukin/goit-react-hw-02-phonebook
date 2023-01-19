@@ -4,6 +4,24 @@ import { nanoid } from 'nanoid'
 import { ContactForm } from "./ContactForm/ContactForm";
 import { ContactList } from "./ContactList/ContactList";
 import { Filter } from "./Filter/Filter";
+import styled from "styled-components";
+
+
+const Wrapper = styled.div`
+  width: 300px;
+  margin-left: 50px;
+  h1 {
+    font-size: 2.1em;
+    text-align: right;
+  }
+  h2 {
+    font-size: 2.1em;
+  }
+  span {
+    color: skyblue;
+  }
+`
+
 
 export class App extends Component {
   state = {
@@ -50,13 +68,13 @@ export class App extends Component {
   
     
   return (
-      <div>
-      <h1>Phonebook</h1>
+      <Wrapper>
+      <h1><span>P</span>honebook</h1>
       <ContactForm onSubmit={this.submitHandler} />
-      <h2>Contacts</h2>
+      <h2>Contact<span>s</span></h2>
       <Filter inputChangeHandler={this.onInputChange} filterValue={this.state.filter} />
       <ContactList contacts={this.state.contacts} filter={this.state.filter} deleteHandler={this.deleteHandler} />
-      </div>
+      </Wrapper>
     
    )
 }
